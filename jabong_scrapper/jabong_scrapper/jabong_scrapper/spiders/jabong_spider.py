@@ -31,7 +31,10 @@ class JabongSpider(scrapy.Spider):
     def parse_question(self, response):
         brand = response.css('.brand::text').extract()[0]
         product_title = response.css('.product-title::text').extract()[0]
-        original_price = response.css('#pdp-price-info .actual-price::text').extract()[0]
+        try:
+            original_price = response.css('#pdp-price-info .actual-price::text').extract()[0]
+        except IndexError:
+            original_price = response.css('.actual-price::text').extract()[0]
         all_sizes = ','.join(response.css('#size-block ul li a span::text').extract())
         other_available_colurs = ','.join(response.css('.color ul li a::attr(title)').extract())
         images = []
@@ -41,9 +44,12 @@ class JabongSpider(scrapy.Spider):
         label =  response.css('.prod-main-wrapper li label::text').extract()
         label_description = response.css('.prod-main-wrapper li span::text').extract()
         product_description = ''
-        for count,item in enumerate(label):
-            product_description += '{} : {}\n'.format(item, label_description[count])
-            product_id = response.css('#size-block ul li a::attr(data-simple-sku)').extract()[0].split('-')[0]
+        if len(label) == len(label_description):
+            for count,item in enumerate(label):
+                product_description += '{} : {}\n'.format(item.encode('utf-8'), label_description[count].encode('utf-8'))
+        else:
+            label_description = 'not acailable'
+        product_id = response.css('#size-block ul li a::attr(data-simple-sku)').extract()[0].split('-')[0]
         callback = lambda response: self.testfunction(response, product_id, brand, product_title, original_price, 
             all_sizes, other_available_colurs, images, category_hierarchy, product_description)
         yield scrapy.Request('http://www.jabong.com/pdp/getCouponOffer?sku={}'.format(product_id), 

@@ -22,6 +22,10 @@ DOWNLOAD_HANDLERS = {
 
 DOWNLOAD_DELAY = 0.15
 
+EXTENSIONS = {
+'jabong_scrapper.faillog.FailLogger': 599,
+}
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'jabong_scrapper (+http://www.yourdomain.com)'

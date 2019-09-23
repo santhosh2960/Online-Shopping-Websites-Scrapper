@@ -1,4 +1,4 @@
-# Amazon Jabong scrapper
+# scrapy_python (amazon_jabong_scrapper)
 
 amazon_jabong_scrapper is a scrapper script written in Python using Scrapy framework to scrape data from two ONLINE SHOPPING WEBSITES, Amazon and Jabong websites. The primary purpose is to RETRIEVE AND COMPARE CLOTHING PRODUCTS from both of them and perform analytics on the same. This is a very old script written in 2016. This might not work well now as the structure of these websites might have been changed.
 

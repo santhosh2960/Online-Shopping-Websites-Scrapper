@@ -7,7 +7,7 @@ amazon_jabong_scrapper is a scrapper script written in Python using Scrapy frame
 Since I had this repo committed inside my other github account(https://github.com/santhosh2960) for which I lost access, I have committed it freshly from this new account.
 
 The script scrapes information such as
-1.. Title of the listed products
+1. Title of the listed products
 2. Sizes available for those products
 3. Links to the other relevenet products recommended by Amazor or Jabong
 4. Prices and Sellers available for the product
